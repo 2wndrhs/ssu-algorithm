@@ -14,10 +14,20 @@ public class Dijkstra {
       {999, 999, 999, 1, 0}
   };
 
+  // 자작 데이터
+  private static final int[][] W2 = {
+      {0, 2, 8, 9, 999},
+      {999, 0, 4, 4, 999},
+      {999, 999, 0, 5, 2},
+      {999, 999, 999, 0, 1},
+      {999, 999, 999, 999, 0},
+  };
+
   public static void main(String[] args) {
     List<int[]> F = new ArrayList<>();
-    dijkstra(5, W1, F);
-    // print F with weight
+
+    dijkstra(5, W2, F);
+
     for (int[] row : F) {
       for (int col = 0; col < row.length; col++) {
         if (col == 2) {
@@ -28,7 +38,6 @@ public class Dijkstra {
       }
       System.out.println();
     }
-
   }
 
   private static void dijkstra(int n, int[][] W, List<int[]> F) {
@@ -57,7 +66,7 @@ public class Dijkstra {
 
       // touch[vnear] 정점에서 vnear 정점으로 가는 간선 edge
       edge = new int[]{touch[vnear], vnear, W[touch[vnear]][vnear]};
-      // edge를 F에 추가
+      // edge를 해집합 F에 추가
       F.add(edge);
 
       // vnear 정점을 거쳐 가는 경로가 더 짧으면 최단 경로를 갱신
